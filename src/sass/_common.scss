@@ -12,24 +12,26 @@ ul {
     padding: 0;
 }
 
-// img {
-//     // display: block;
-//     // max-width: 100%;
-//     // height: auto;
-// }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 body {
+    position: relative;
     text-align: center;
     padding-bottom: 20px;
 }
 
 .search-container {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: center;
     padding: 20px 0;
     background-color: rgb(70, 70, 218);
     box-shadow: #555555 0px 2px 4px 2px;
-    margin-bottom: 20px;
+
 }
 
 .search-form {
@@ -69,13 +71,13 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    padding-top: 86px;
     margin-bottom: 20px;
-    // grid-template-rows: auto;
 }
 
 .photo-card {
-    // display: grid;
-    // grid-auto-flow: row;
+    display: grid;
+    grid-auto-flow: row;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
             0px 4px 4px rgba(0, 0, 0, 0.06),
             1px 4px 6px rgba(0, 0, 0, 0.16);
@@ -83,7 +85,7 @@ body {
 
 .photo-card img {
         width: 100%;
-        max-height: 220px;
+        max-height: 210px;
         object-fit: cover;
 }
 
