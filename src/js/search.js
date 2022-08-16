@@ -27,7 +27,6 @@ function onSearchSubmit(evt) {
       startHitsCheck(images);
       clearGallery();
       appendImgMarkup(images);
-      const lightbox = new SimpleLightbox('.gallery a');
       hitsLeftCheck(images);
     })
     .catch(error => console.log(error));
@@ -38,8 +37,6 @@ function onLoadMoreBtnClick() {
     .getImages()
     .then(images => {
       appendImgMarkup(images);
-      const lightbox = new SimpleLightbox('.gallery a');
-      lightbox.refresh();
       hitsLeftCheck(images);
     })
     .catch(error => console.log(error));
@@ -48,11 +45,14 @@ function onLoadMoreBtnClick() {
 function startHitsCheck(images) {
   if (images.data.totalHits === 0) {
     imgSearchApi.resetPage();
+    loadMoreBtn.classList.add('is-hidden');
     return Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
+      'Вибач, але ми не знайшли зображень відовідно твого запиту. Спробуй ще.'
     );
   }
-  Notify.success(`Hooray! We found ${images.data.totalHits} images.`);
+  Notify.success(
+    `Круто! Ми знайшли для тебе ${images.data.totalHits} зображень :)`
+  );
   loadMoreBtn.classList.remove('is-hidden');
 }
 
@@ -63,10 +63,10 @@ function hitsLeftCheck(images) {
   if (hitsLeft < 0 && !loadMoreBtn.classList.contains('is-hidden')) {
     loadMoreBtn.classList.add('is-hidden');
     return Notify.failure(
-      `We're sorry, but you've reached the end of search results.`
+      `Вибач, але це всі зображення за результатами твого запиту :(`
     );
   } else if (hitsLeft > 0 && imgSearchApi.page > 2) {
-    Notify.success(`Look! We have ${hitsLeft} more images.`);
+    Notify.success(`Гортай! Ми маємо ще ${hitsLeft} зображень для тебе ;)`);
   }
 }
 
@@ -75,6 +75,14 @@ function appendImgMarkup(images) {
   imgMarkup(imgArray)
     .then(markup => {
       gallery.insertAdjacentHTML('beforeend', markup);
+      const { height: cardHeight } =
+        gallery.firstElementChild.getBoundingClientRect();
+      window.scrollBy({
+        top: cardHeight * 3,
+        behavior: 'smooth',
+      });
+      const lightbox = new SimpleLightbox('.gallery a');
+      lightbox.refresh();
     })
     .catch(error => console.log(error));
 }

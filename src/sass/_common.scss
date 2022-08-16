@@ -64,6 +64,12 @@ body {
 
 .search-icon {
     fill: black;
+    transition: scale 250ms linear;
+}
+
+.search-icon:hover,
+.search-icon:focus {
+    scale: 1.25;
 }
 
 .gallery {
@@ -101,12 +107,29 @@ body {
     flex-direction: column;
 }
 
+.load-more {
+    color: white;
+    background-color: rgb(70, 70, 218);
+    border-color: blue;
+    border-radius: 18px;
+    padding: 5px 10px;
+    box-shadow: #555555 1px 1px 4px 2px;
+    transition: transform 150ms linear, box-shadow 150ms linear;
+}
+
+.load-more:hover,
+.load-more:focus {
+    transform: translate(-1px, -1px);
+    box-shadow: #555555 1px 1px 4px 3px;
+}
+
+.load-more:active {
+    transform: translate(1px, 1px);
+        box-shadow: #555555 1px 1px 4px 2px;
+}
+
 .is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
-
-// .info {
-
-// }
