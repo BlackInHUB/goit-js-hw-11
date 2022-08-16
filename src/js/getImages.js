@@ -4,7 +4,7 @@ export default class ImgSearchApi {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
-    this.per_page = 12;
+    this.per_page = 40;
   }
 
   async getImages() {
